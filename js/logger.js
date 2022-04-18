@@ -25,6 +25,6 @@ class Logger {
 }
 
 // Toggles the display of logging messages.
-Logger.ENABLED = false;
+Logger.ENABLED = true;
 // Toggles the display of debug messages (provided that the Logger is enabled).
-Logger.VERBOSE = false;
+Logger.VERBOSE = true;

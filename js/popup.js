@@ -39,7 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // View Threshold
         new ViewThresholdCheckbox(),
         new ViewThresholdSlider(),
-        new ViewThresholdLabel()
+        new ViewThresholdLabel(),
+
+        // Age Threshold
+        new AgeThresholdCheckbox(),
+        new AgeThresholdSlider(),
+        new AgeThresholdLabel()
     ]
 
     chrome.tabs.onUpdated.addListener(onTabUpdatedListener);

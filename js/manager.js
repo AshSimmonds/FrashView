@@ -85,7 +85,10 @@ class Manager {
         }
 
         const threshold = this.settings.threshold();
-        const videos = extractor.extract(document, threshold);
+        const agethreshold = this.settings.agethreshold();
+// TODO: reinstate threshold        
+//        const videos = extractor.extract(document, threshold);
+        const videos = extractor.extract(document, agethreshold);
         return new Album(videos);
     }
 }

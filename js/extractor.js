@@ -18,6 +18,7 @@ class Extractor {
      *
      * @param {Element} element - HTML element to extract viewed videos from.
      * @param {number} threshold - Minimum view progress of a watched video.
+     * @param {number} agethreshold - Maximum age of unwatched video.
      * @returns {Video[]} - List of viewed videos.
      */
     extract(element, threshold) {
@@ -25,6 +26,8 @@ class Extractor {
         const elements = [].concat(...subextractors.map(subextractor => subextractor(element)));
 
         const videos = elements.map(element => new Video(element));
+// TODO: reinstate standard threshold        
+//        const viewed = videos.filter(video => video.getViewed(threshold));
         const viewed = videos.filter(video => video.getViewed(threshold));
 
         Logger.info("Extractor.extract(): %d/%d Videos on the page were viewed.", viewed.length, videos.length);

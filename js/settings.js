@@ -68,6 +68,19 @@ class Settings {
     }
 
     /**
+     * Returns the current age threshold.
+     *
+     * @returns {number} - Maximum age of the video
+     * inclusive range [1, 100].
+     */
+     agethreshold() {
+        const enabled = this.state[AGE_THRESHOLD_CHECKBOX_STORAGE_KEY] === true;
+        const percent = this.state[AGE_THRESHOLD_SLIDER_STORAGE_KEY];
+        return enabled ? percent : 100;
+    }
+
+
+    /**
      * Loads the state from browser storage and then invokes the given callback
      * if one is provided.
      *

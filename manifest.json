@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
 
-    "name": "FreshView for YouTube™",
-    "short_name": "FreshView for YouTube™",
-    "description": "Hide YouTube™ videos you've already watched to easily discover fresh content.",
-    "version": "2.1.0",
+    "name": "FreshAshView for YouTube™",
+    "short_name": "FreshAshView for YouTube™",
+    "description": "Hide YouTube™ videos you've already watched or older videos.",
+    "version": "2.2.0",
 
     "background": {
         "scripts": [

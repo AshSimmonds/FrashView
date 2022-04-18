@@ -102,10 +102,18 @@ class Video {
             return undefined;
         }
 
+        // Find the date metadata
+        const vidmetadata = this.element.querySelector("div#metadata-line.style-scope ytd-grid-video-renderer");
+
+        console.log("vidmetadata: " + vidmetadata + " ");
+
         // Determine whether the Video's progress surpasses the progress threshold.
         const width = bar.style.width.slice(0, -1);
         const progress = parseInt(width, 10);
+        const age = parseInt(width, 10);
+// TODO: reinstate viewed threshold stuff        
         this.viewed = progress >= threshold;
+//        this.viewed = age <= threshold;
         return this.viewed;
     }
 

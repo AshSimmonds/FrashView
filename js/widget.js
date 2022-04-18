@@ -432,3 +432,138 @@ class ViewThresholdLabel extends Widget {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+// Age Threshold
+// -----------------------------------------------------------------------------
+
+/**
+ * Widget for the Age Threshold checkbox.
+ */
+ class AgeThresholdCheckbox extends Checkbox {
+    /**
+     * Constructs a new Age Threshold checkbox by calling the Checkbox constructor.
+     */
+    constructor() {
+        super(
+            "age-threshold-checkbox",
+            AGE_THRESHOLD_CHECKBOX_STORAGE_KEY,
+            AGE_THRESHOLD_CHECKBOX_DEFAULT_STATE,
+        );
+    }
+}
+
+/**
+ * Widget for the Age Threshold slider.
+ */
+class AgeThresholdSlider extends Widget {
+    /**
+     * Constructs a new Age Threshold slider by calling the Widget constructor
+     * and registering an event listener that calls AgeThresholdSlider.save()
+     * on the "input" event.
+     */
+    constructor() {
+        super(
+            "age-threshold-slider",
+            [AGE_THRESHOLD_CHECKBOX_STORAGE_KEY, AGE_THRESHOLD_SLIDER_STORAGE_KEY],
+            AGE_THRESHOLD_SLIDER_DEFAULT_STATE
+        );
+
+        this.load();
+        this.element.addEventListener("input", () => this.save());
+    }
+
+    /**
+     * See Widget.load().
+     */
+    load() {
+        const items = {
+            [AGE_THRESHOLD_CHECKBOX_STORAGE_KEY]: AGE_THRESHOLD_CHECKBOX_DEFAULT_STATE,
+            [AGE_THRESHOLD_SLIDER_STORAGE_KEY]: AGE_THRESHOLD_SLIDER_DEFAULT_STATE,
+        };
+        Storage.get(items, values => this.onLoad(values));
+    }
+
+    /**
+     * Called from AgeThresholdSlider.load() to update the Age Threshold slider UI.
+     *
+     * @param {Object} values - Values from browser storage.
+     */
+    onLoad(values) {
+        this.element.value = values[AGE_THRESHOLD_SLIDER_STORAGE_KEY];
+
+        const track_width = this.element.clientWidth;
+        const thumb_width = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--thumb-size"));
+        const distance = Math.ceil((1 - (this.element.value - 1) / 99) * (track_width - thumb_width));
+        document.documentElement.style.setProperty("--thumb-translation", `${distance}px`);
+
+        this.element.disabled = values[AGE_THRESHOLD_CHECKBOX_STORAGE_KEY] === false;
+    }
+
+    /**
+     * See Widget.save().
+     */
+    save() {
+        const items = {[AGE_THRESHOLD_SLIDER_STORAGE_KEY]: this.element.value};
+        Storage.set(items);
+    }
+}
+
+/**
+ * Widget for the Age Threshold label.
+ */
+class AgeThresholdLabel extends Widget {
+    /**
+     * Constructs a new Age Threshold label by calling the Widget constructor.
+     */
+    constructor() {
+        super(
+            "age-threshold-percent",
+            [AGE_THRESHOLD_CHECKBOX_STORAGE_KEY, AGE_THRESHOLD_SLIDER_STORAGE_KEY],
+            `${AGE_THRESHOLD_SLIDER_DEFAULT_STATE}%`
+        );
+        this.load();
+    }
+
+    /**
+     * See Widget.load().
+     */
+    load() {
+        const items = {
+            [AGE_THRESHOLD_CHECKBOX_STORAGE_KEY]: AGE_THRESHOLD_CHECKBOX_DEFAULT_STATE,
+            [AGE_THRESHOLD_SLIDER_STORAGE_KEY]: AGE_THRESHOLD_SLIDER_DEFAULT_STATE,
+        };
+        Storage.get(items, values => this.onLoad(values));
+    }
+
+    /**
+     * Called from AgeThresholdLabel.load() to update the Age Threshold slider UI.
+     *
+     * @param {Object} values - Values from browser storage.
+     */
+    onLoad(values) {
+        const enabled = values[AGE_THRESHOLD_CHECKBOX_STORAGE_KEY] === true;
+        const percent = values[AGE_THRESHOLD_SLIDER_STORAGE_KEY];
+
+        if (enabled) {
+//            this.element.textContent = `${percent}%`;
+            this.element.textContent = `${percent}%`;
+        } else {
+            this.element.textContent = "100%";
+        }
+    }
+
+
+
+
+
+}

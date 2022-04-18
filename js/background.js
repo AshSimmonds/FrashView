@@ -27,6 +27,13 @@
             VIEW_THRESHOLD_CHECKBOX_STORAGE_KEY,
             VIEW_THRESHOLD_CHECKBOX_DEFAULT_STATE
         );
+
+    } else if (command === "toggle-age-threshold-checkbox") {
+        toggleStateInBrowserStorage(
+            AGE_THRESHOLD_CHECKBOX_STORAGE_KEY,
+            AGE_THRESHOLD_CHECKBOX_DEFAULT_STATE
+        );
+
     }
 };
 
