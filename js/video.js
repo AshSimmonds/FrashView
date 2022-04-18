@@ -103,9 +103,18 @@ class Video {
         }
 
         // Find the date metadata
-        const vidmetadata = this.element.querySelector("div#metadata-line.style-scope ytd-grid-video-renderer");
+ //       const vidmetadata = this.element.querySelector("div#metadata-line.ytd-grid-video-renderer-span.ytd-grid-video-renderer");
+        const vidmetadata = this.element.querySelector("div#metadata-line.ytd-grid-video-renderer.ytd-grid-video-renderer");
 
         console.log("vidmetadata: " + vidmetadata + " ");
+
+        var theDate = null;
+
+        if (vidmetadata != null) {
+            theDate = vidmetadata.childNodes[1].childNodes[0].data;
+        }
+
+        console.log("theDate: " + theDate + " ");
 
         // Determine whether the Video's progress surpasses the progress threshold.
         const width = bar.style.width.slice(0, -1);
