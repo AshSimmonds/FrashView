@@ -31,6 +31,7 @@ class Extractor {
         const viewed = videos.filter(video => video.getViewed(threshold));
 
         Logger.info("Extractor.extract(): %d/%d Videos on the page were viewed.", viewed.length, videos.length);
+        console.log("asdf");
         return viewed;
     }
 

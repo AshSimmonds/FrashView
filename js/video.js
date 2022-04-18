@@ -18,12 +18,12 @@ class Video {
     deriveURL() {
         // List of selectors that could match hyperlink tags associated with this Video.
         const selectors = [
-            ":scope a#video-title.yt-simple-endpoint.style-scope.ytd-grid-video-renderer",  // Grid
+            ":scope a#video-title.yt-simple-endpoint.style-scope.ytd-grid-video-renderer", // Grid
             ":scope a#video-title-link.yt-simple-endpoint.style-scope.ytd-rich-grid-media", // Home
-            ":scope a.yt-simple-endpoint.style-scope.ytd-playlist-video-renderer",          // Playlist page
-            ":scope a.yt-simple-endpoint.style-scope.ytd-playlist-panel-video-renderer",    // Playlist panel
-            ":scope a.yt-simple-endpoint.style-scope.ytd-compact-video-renderer",           // Recommendations
-            ":scope a#video-title.yt-simple-endpoint.style-scope.ytd-video-renderer",       // Search
+            ":scope a.yt-simple-endpoint.style-scope.ytd-playlist-video-renderer", // Playlist page
+            ":scope a.yt-simple-endpoint.style-scope.ytd-playlist-panel-video-renderer", // Playlist panel
+            ":scope a.yt-simple-endpoint.style-scope.ytd-compact-video-renderer", // Recommendations
+            ":scope a#video-title.yt-simple-endpoint.style-scope.ytd-video-renderer", // Search
         ].join(", ");
 
         // Find a hyperlink tag associated with this Video.
@@ -99,30 +99,53 @@ class Video {
         const bar = this.element.querySelector("div#progress.style-scope.ytd-thumbnail-overlay-resume-playback-renderer");
         if (bar === null) {
             Logger.debug("Video.fetchViewed(): failed to find bar element for Video", this.element, ".");
-            return undefined;
+            //return undefined;
         }
 
         // Find the date metadata
- //       const vidmetadata = this.element.querySelector("div#metadata-line.ytd-grid-video-renderer-span.ytd-grid-video-renderer");
-        const vidmetadata = this.element.querySelector("div#metadata-line.ytd-grid-video-renderer.ytd-grid-video-renderer");
+        //       const vidmetadata = this.element.querySelector("div#metadata-line.ytd-grid-video-renderer-span.ytd-grid-video-renderer");
 
-        console.log("vidmetadata: " + vidmetadata + " ");
+        // This is on channel's page
+        var divTag = "div#metadata-line.ytd-grid-video-renderer.ytd-grid-video-renderer";
+
+        // This is on the homepage
+        divTag = "div#metadata-line.style-scope.ytd-video-meta-block";
+
+        const vidmetadata = this.element.querySelector(divTag);
+
+        //        console.log("vidmetadata: " + vidmetadata + " ");
 
         var theDate = null;
 
         if (vidmetadata != null) {
-            theDate = vidmetadata.childNodes[1].childNodes[0].data;
+            // This is on channel's page
+            // theDate = vidmetadata.childNodes[1].childNodes[0].data;
+
+            // This is the homepage
+            if (vidmetadata.childNodes[5].childNodes[0] != null) {
+                theDate = vidmetadata.childNodes[5].childNodes[0].data;
+            }
+
+
         }
 
         console.log("theDate: " + theDate + " ");
 
         // Determine whether the Video's progress surpasses the progress threshold.
-        const width = bar.style.width.slice(0, -1);
-        const progress = parseInt(width, 10);
-        const age = parseInt(width, 10);
-// TODO: reinstate viewed threshold stuff        
-        this.viewed = progress >= threshold;
-//        this.viewed = age <= threshold;
+//        const width = bar.style.width.slice(0, -1);
+//        const progress = parseInt(width, 10);
+//        const age = parseInt(width, 10);
+        // TODO: reinstate viewed threshold stuff        
+        //        this.viewed = progress >= threshold;
+        //        this.viewed = age <= threshold;
+
+        if (theDate != null) {
+            if (!theDate.includes("day") && !theDate.includes("hour") && !theDate.includes("minute")) {
+                this.viewed = true;
+                console.log("BANG");
+            }
+        }
+
         return this.viewed;
     }
 
