@@ -122,8 +122,10 @@ class Video {
             // theDate = vidmetadata.childNodes[1].childNodes[0].data;
 
             // This is the homepage
-            if (vidmetadata.childNodes[5].childNodes[0] != null) {
-                theDate = vidmetadata.childNodes[5].childNodes[0].data;
+            if (vidmetadata.childNodes[5] != null) {
+                if (vidmetadata.childNodes[5].childNodes[0] != null) {
+                    theDate = vidmetadata.childNodes[5].childNodes[0].data;
+                }
             }
 
 
