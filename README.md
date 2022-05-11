@@ -1,6 +1,16 @@
 <h1>
-  <img src="img/icon24.png"/> FreshView for YouTube™
+  <img src="img/icon24.png"/> FrashView for YouTube™
 </h1>
+
+## ASH README:
+
+WIP forked from above.
+
+Basically you can tell YT to hide any videos that are more than X minutes/hours/days/months/years old.
+
+Will finish it oneday.
+
+## ORIGINAL REPO README:
 
 FreshView for YouTube™ is a [Chrome](https://chrome.google.com/webstore/detail/freshview-for-youtube/eckknmnfoohbeklmjlidmfdlakndcfkm) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/freshview-for-youtube/) extension that hides watched YouTube™ videos.
 
