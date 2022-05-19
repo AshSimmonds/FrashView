@@ -134,15 +134,18 @@ class Video {
         console.log("theDate: " + theDate + " ");
 
         // Determine whether the Video's progress surpasses the progress threshold.
-//        const width = bar.style.width.slice(0, -1);
-//        const progress = parseInt(width, 10);
-//        const age = parseInt(width, 10);
+        //        const width = bar.style.width.slice(0, -1);
+        //        const progress = parseInt(width, 10);
+        //        const age = parseInt(width, 10);
         // TODO: reinstate viewed threshold stuff        
         //        this.viewed = progress >= threshold;
         //        this.viewed = age <= threshold;
 
         if (theDate != null) {
-            if (!theDate.includes("day") && !theDate.includes("hour") && !theDate.includes("minute")) {
+            // if (!theDate.includes("day") && !theDate.includes("hour") && !theDate.includes("minute")) {
+            // if (!theDate.includes("days")) {
+            // if (!theDate.includes("hour")) {
+            if (!theDate.includes("minute") && !theDate.includes("hour") && !theDate.includes("1 day") && !theDate.includes("2 days") && !theDate.includes("3 days")) {
                 this.viewed = true;
                 console.log("BANG");
             }
