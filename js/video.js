@@ -113,23 +113,28 @@ class Video {
 
         const vidmetadata = this.element.querySelector(divTag);
 
-        //        console.log("vidmetadata: " + vidmetadata + " ");
 
         var theDate = null;
 
         if (vidmetadata != null) {
-            // This is on channel's page
-            // theDate = vidmetadata.childNodes[1].childNodes[0].data;
 
-            // This is the homepage
-            if (vidmetadata.childNodes[7] != null) {
-                if (vidmetadata.childNodes[7].childNodes[0] != null) {
-                    theDate = vidmetadata.childNodes[7].childNodes[0].data;
+            // This is for the homepage
+            if (vidmetadata.childNodes[3] != null) {
+                if (vidmetadata.childNodes[3].childNodes[0] != null) {
+                    
+                    // console.log("vidmetadataasdf: " + vidmetadata.childNodes[3].childNodes[0].data + " ");
+
+                    // console.log('qwerqwerqwer: ' + vidmetadata.querySelector("#metadata-line > span:nth-child(4)").innerHTML)
+
+                    // theDate = vidmetadata.childNodes[3].childNodes[0].data;
+
+                    theDate = vidmetadata.querySelector("#metadata-line > span:nth-child(4)").innerHTML;
                 }
             }
 
-
         }
+
+        // console.log('qwerqwerqwer: ' + document.querySelector("#metadata-line > span:nth-child(4)").innerHTML);
 
         console.log("theDate: " + theDate + " ");
 
