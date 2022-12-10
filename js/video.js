@@ -136,7 +136,7 @@ class Video {
 
         // console.log('qwerqwerqwer: ' + document.querySelector("#metadata-line > span:nth-child(4)").innerHTML);
 
-        console.log("theDate: " + theDate + " ");
+        // console.log("theDate: " + theDate + " ");
 
         // Determine whether the Video's progress surpasses the progress threshold.
         //        const width = bar.style.width.slice(0, -1);
@@ -152,7 +152,10 @@ class Video {
             // if (!theDate.includes("hour")) {
             if (!theDate.includes("minute") && !theDate.includes("hour") && !theDate.includes("1 day") && !theDate.includes("2 days") && !theDate.includes("3 days")) {
                 this.viewed = true;
-                console.log("BANG");
+                console.log("REMOVED: " + theDate);
+            } else {
+                this.viewed = false;
+                console.log("KEPT: " + theDate);
             }
         }
 
