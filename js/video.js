@@ -119,8 +119,8 @@ class Video {
         if (vidmetadata != null) {
 
             // This is for the homepage
-            if (vidmetadata.childNodes[3] != null) {
-                if (vidmetadata.childNodes[3].childNodes[0] != null) {
+            // if (vidmetadata.childNodes[3] != null) {
+                // if (vidmetadata.childNodes[3].childNodes[0] != null) {
                     
                     // console.log("vidmetadataasdf: " + vidmetadata.childNodes[3].childNodes[0].data + " ");
 
@@ -128,9 +128,10 @@ class Video {
 
                     // theDate = vidmetadata.childNodes[3].childNodes[0].data;
 
-                    theDate = vidmetadata.querySelector("#metadata-line > span:nth-child(4)").innerHTML;
-                }
-            }
+                    theDate = vidmetadata.querySelector("#metadata-line > span:nth-child(4)");
+
+                // }
+            // }
 
         }
 
@@ -147,6 +148,7 @@ class Video {
         //        this.viewed = age <= threshold;
 
         if (theDate != null) {
+            theDate = theDate.innerHTML;
             // if (!theDate.includes("day") && !theDate.includes("hour") && !theDate.includes("minute")) {
             // if (!theDate.includes("days")) {
             // if (!theDate.includes("hour")) {
